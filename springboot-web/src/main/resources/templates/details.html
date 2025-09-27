@@ -12,9 +12,9 @@
 <body>
     <h1  th:text="${title}"></h1>
     <ul>
-        <li th:text="${name}"></li>
-        <li th:text="${lastname}"></li>
-        <li></li>
+        <!--aunque las variables de User son privadas, por debajo llama a sus metodos get-->
+        <li th:text="${user.name}"></li>
+        <li th:text="${user.lastname}"></li>
     </ul>
 </body>
 </html>
