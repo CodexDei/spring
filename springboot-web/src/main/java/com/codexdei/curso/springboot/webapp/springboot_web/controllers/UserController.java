@@ -1,12 +1,13 @@
 package com.codexdei.curso.springboot.webapp.springboot_web.controllers;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 
 import com.codexdei.curso.springboot.webapp.springboot_web.models.User;
 
@@ -21,7 +22,7 @@ public class UserController {
         User user = new User("Yorking", "Master");
 
 
-        user.setEmail("yorking@sion.celest");
+        user.setEmail("yorking@celest.sion");
         model.addAttribute("title", "Hello World!!");
         model.addAttribute("user", user);
         return "details";
@@ -30,10 +31,19 @@ public class UserController {
     @GetMapping("/list")
     public String list(ModelMap model){
 
-        List<User> users = new ArrayList<>();
-
-        model.addAttribute("users", users);
+        model.addAttribute("title","Users list");
+       // users.forEach(u -> System.out.println(u));
 
         return "list";
+    }
+
+    @ModelAttribute("users")
+    public List<User> usersModel(){
+        return Arrays.asList(
+                new User("Marye", "Mor"),
+                new User("Samy", "Tequi", "samy@email.com"),
+                new User("Yorking", "Master"),
+                new User("Xto", "Emanuel", "xto@celest.sion")
+        );
     }
 }
